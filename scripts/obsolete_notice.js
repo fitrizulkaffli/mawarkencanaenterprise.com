@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "This Website is Obsolete",
             icon: "info",
             iconColor: "#FFC107",
-            html: `<br>This website is outdated and has been archived.<br>It no longer reflects the current status or updates of the company.`,
+            html: `<br>This website is outdated and has been archived.<br>It no longer reflects the current status<br>or updates of the company.`,
             showCancelButton: true,
             focusConfirm: false,
             confirmButtonText: `I Understand`,
