@@ -11,31 +11,47 @@ document.addEventListener('DOMContentLoaded', function() {
             focusConfirm: false,
             confirmButtonText: `I Understand`,
             cancelButtonText: `Visit Current Website <i class="fa fa-external-link"></i>`,
-            footer: '© 2017&nbsp;<a href="https://fitri.my" target="_blank" rel="noopener noreferrer" class="custom-footer-link">Mohd Fitri Zulkaffli <i class="fa fa-external-link"></i></a>. All rights reserved.',
+            footer: 'Copyright © 2017&nbsp;<a href="https://fitri.my" target="_blank" rel="noopener noreferrer" class="custom-footer-link">Mohd Fitri Zulkaffli <i class="fa fa-external-link"></i></a>',
             confirmButtonColor: "#660099",
             cancelButtonColor: "#09000E",
             allowOutsideClick: false,
             allowEscapeKey: false,
             allowEnterKey: false,
+            customClass: {
+                title: 'swal-title',
+                htmlContainer: 'swal-html',
+                footer: 'swal-footer'
+            },
+            didOpen: () => {
+                const swalTitle = Swal.getTitle();
+                const swalHtml = Swal.getHtmlContainer();
+                const swalFooter = Swal.getFooter();
+
+                if (swalTitle) swalTitle.style.color = "#09000E";
+                if (swalHtml) swalHtml.style.color = "#09000E";
+                if (swalFooter) swalFooter.style.color = "#09000E";
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 popupOpen = false;
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                window.open("https://fitri.my/", "noopener,noreferrer");
+                window.open("https://fitri.my/", "noopener,noreferrer,nofollow");
             }
         });
         popupOpen = true;
     }
+
     window.addEventListener('blur', function() {
         if (popupOpen) {
             Swal.close();
         }
     });
+
     window.addEventListener('focus', function() {
         if (popupOpen) {
             openPopup();
         }
     });
+
     openPopup();
 });
-
